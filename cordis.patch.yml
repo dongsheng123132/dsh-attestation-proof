@@ -1,0 +1,4 @@
+- - $push
+  - - name: dsh-attestation-proof
+      config:
+        workspaceRoot: .

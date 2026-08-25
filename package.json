@@ -1,0 +1,16 @@
+{
+  "name": "dsh-attestation-proof",
+  "version": "0.1.0",
+  "description": "Offline DSSE/in-toto attestation evidence for DeepSeek Harness releases",
+  "license": "MIT",
+  "type": "module",
+  "main": "./index.js",
+  "exports": { ".": "./index.js", "./proof": "./lib/attestation-proof.mjs" },
+  "bin": { "dsh-attestation-proof": "./bin/dsh-attestation-proof.mjs" },
+  "files": [".codex-plugin/", ".mcp.json", "bin/", "cordis.patch.yml", "index.js", "lib/", "mcp-server.mjs", "LICENSE", "README.md", "SECURITY.md"],
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" } },
+  "scripts": { "test": "node --test test/*.test.mjs", "check": "node scripts/check.mjs", "smoke:plugin": "node test/plugin-smoke.mjs", "smoke:mcp": "node test/mcp-smoke.mjs" },
+  "engines": { "node": ">=22" },
+  "repository": { "type": "git", "url": "git+https://github.com/dongsheng123132/dsh-attestation-proof.git" },
+  "keywords": ["deepseek-harness", "dsh", "dsh-plugin", "attestation", "dsse", "in-toto", "supply-chain"]
+}

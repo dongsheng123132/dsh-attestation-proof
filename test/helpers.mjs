@@ -1,0 +1,11 @@
+import { createHash, generateKeyPairSync, sign } from 'node:crypto'
+import { mkdir, writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
+export const sha = value => createHash('sha256').update(value).digest('hex')
+const stable = value => JSON.stringify(value, (_, v) => v && typeof v === 'object' && !Array.isArray(v) ? Object.fromEntries(Object.entries(v).sort(([a], [b]) => a.localeCompare(b))) : v)
+export async function fixture(root, mutate = {}) {
+  const subject = Buffer.from('release-bundle-v1'); const { publicKey, privateKey } = generateKeyPairSync('ed25519'); const pem = publicKey.export({ type: 'spki', format: 'pem' }); const statement = { _type: 'https://in-toto.io/Statement/v1', subject: [{ name: 'release', digest: { sha256: sha(subject) } }], predicateType: 'https://slsa.dev/provenance/v1', predicate: { buildDefinition: { source: { revision: 'abc123' } } } }; Object.assign(statement, mutate.statement)
+  const payload = Buffer.from(stable(statement)); const type = 'application/vnd.in-toto+json'; const pae = Buffer.concat([Buffer.from(`DSSEv1 ${Buffer.byteLength(type)} ${type} ${payload.length} `), payload]); const envelope = { payloadType: type, payload: payload.toString('base64'), signatures: [{ keyid: 'release-key', sig: sign(null, pae, privateKey).toString('base64') }] }; Object.assign(envelope, mutate.envelope)
+  const envelopeText = stable(envelope); await mkdir(join(root, 'keys'), { recursive: true }); await mkdir(join(root, 'attestations'), { recursive: true }); await writeFile(join(root, 'subject.bin'), subject); await writeFile(join(root, 'keys/release.pem'), pem); await writeFile(join(root, 'attestations/build.json'), envelopeText)
+  const manifest = { schemaVersion: 1, subject: { id: 'release', path: 'subject.bin', sha256: sha(subject) }, trust: { threshold: mutate.threshold || 1, keys: [{ id: 'release-key', algorithm: 'ed25519', publicKeyPath: 'keys/release.pem', sha256: sha(pem) }] }, attestations: [{ id: 'build', path: 'attestations/build.json', sha256: sha(envelopeText) }], policy: { minVerifiedAttestations: 1, allowedPredicateTypes: ['https://slsa.dev/provenance/v1'], requiredClaims: [{ pointer: '/predicate/buildDefinition/source/revision', sha256: sha(stable('abc123')) }] } }; await writeFile(join(root, 'proof.json'), JSON.stringify(manifest)); return { manifest, subject, pem, envelope }
+}

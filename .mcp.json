@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "dsh-attestation-proof": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["./mcp-server.mjs"]
+    }
+  }
+}
