@@ -1,4 +1,5 @@
-- - $push
-  - - name: dsh-attestation-proof
+- insert:
+    - id: dsh-attestation-proof
+      name: dsh-attestation-proof
       config:
         workspaceRoot: .
