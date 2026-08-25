@@ -23,6 +23,4 @@ jobs:
       - run: npm run check
       - run: npm run smoke:plugin
       - run: npm run smoke:mcp
-      - run: python "$HOME/.codex/skills/.system/plugin-creator/scripts/validate_plugin.py" .
-        if: ${{ false }}
       - run: python scripts/validate-plugin-ci.py
