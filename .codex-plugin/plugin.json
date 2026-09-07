@@ -1,6 +1,6 @@
 {
   "name": "dsh-attestation-proof",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Offline, content-addressed DSSE/in-toto attestation verification for DeepSeek Harness releases",
   "author": {
     "name": "dongsheng123132"
@@ -8,14 +8,25 @@
   "homepage": "https://github.com/dongsheng123132/dsh-attestation-proof",
   "repository": "https://github.com/dongsheng123132/dsh-attestation-proof",
   "license": "MIT",
-  "keywords": ["deepseek-harness", "dsh", "attestation", "dsse", "in-toto", "supply-chain"],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "attestation",
+    "dsse",
+    "in-toto",
+    "supply-chain"
+  ],
   "interface": {
     "displayName": "DSH Attestation Proof",
     "shortDescription": "Verify pinned DSSE/in-toto release evidence offline.",
     "longDescription": "Validates subject digests, pinned public keys, signature thresholds, predicate types, and hashed claims without exposing signed payloads.",
     "developerName": "dongsheng123132",
     "category": "Developer Tools",
-    "capabilities": ["MCP tools", "DSH tools", "offline verification"],
+    "capabilities": [
+      "MCP tools",
+      "DSH tools",
+      "offline verification"
+    ],
     "defaultPrompt": "Verify this explicit attestation manifest and return only the content-addressed verdict."
   },
   "mcpServers": "./.mcp.json"
