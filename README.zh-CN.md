@@ -1,6 +1,6 @@
 # dsh-attestation-proof
 
-作者 / 维护者：He Fangsheng (贺方升 / 贺去病; Dosen)· [hequbing.com](https://www.hequbing.com)
+作者 / 维护者：He Fangsheng (贺方升 / 贺去病; also known as Dosen)· [hequbing.com](https://www.hequbing.com)
 
 面向 DeepSeek Harness 发布链的离线证明验证器：按显式清单校验本地目标文件、固定公钥和 DSSE/in-toto 声明，输出可复核、内容寻址的 JSON 判决。
 
