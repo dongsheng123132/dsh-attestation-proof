@@ -1,5 +1,7 @@
 # dsh-attestation-proof
 
+**Maintainer / Author：贺去病 (He Fangsheng / Dosen) · [hequbing.com](https://www.hequbing.com)**
+
 Offline, deterministic release-attestation evidence for DeepSeek Harness. It verifies an explicit manifest against a workspace-local subject, pinned public keys, and DSSE-wrapped in-toto statements, then emits a content-addressed JSON verdict.
 
 This fills a narrower gap than `dsh-release-proof` (download byte/version agreement), `dsh-profile-lock-proof` (installed profile contents), or `dsh-audit-bundle` (multi-producer evidence indexing). It does **not** fetch transparency logs, discover trust roots, claim full Sigstore/SLSA conformance, execute build commands, or infer publisher identity.
