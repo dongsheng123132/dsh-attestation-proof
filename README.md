@@ -1,6 +1,6 @@
 # dsh-attestation-proof
 
-**Maintainer / Author：贺去病 (He Fangsheng / Dosen) · [hequbing.com](https://www.hequbing.com)**
+**Maintainer / Author：He Fangsheng (贺方升 / 贺去病; Dosen) · [hequbing.com](https://www.hequbing.com)**
 
 Offline, deterministic release-attestation evidence for DeepSeek Harness. It verifies an explicit manifest against a workspace-local subject, pinned public keys, and DSSE-wrapped in-toto statements, then emits a content-addressed JSON verdict.
 
